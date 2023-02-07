@@ -31,7 +31,7 @@ return new class extends Migration
                     "libelle"=>"Receptioniste"
                 ],
                 [
-                    "libelle"=>"Laboratin"
+                    "libelle"=>"Laborantin"
                 ]
                     
             ]
