@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('traitements', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->foreignId("user_id")->constrained();
+            $table->foreignId("patient_id")->constrained();
+            $table->string('libelle');
             $table->string('prix');
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('salles', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->foreignId('patient_id')->constrained();
             $table->integer('numero');
             $table->timestamps();
         });
