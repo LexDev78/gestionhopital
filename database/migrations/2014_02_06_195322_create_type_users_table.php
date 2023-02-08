@@ -25,9 +25,6 @@ return new class extends Migration
                     "libelle"=>"Medecin"
                 ],
                 [
-                    "libelle"=>"Patient"
-                ],
-                [
                     "libelle"=>"Receptioniste"
                 ],
                 [

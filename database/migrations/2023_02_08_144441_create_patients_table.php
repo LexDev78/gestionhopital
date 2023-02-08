@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('paiements', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('patient_id')->constrained();
-            $table->string('motif');
-            $table->string('montant');
-            $table->date('date');            
+            $table->string('matricule')->unique();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('adresse')->nullable();
+            $table->string('telephone');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paiements');
+        Schema::dropIfExists('patients');
     }
 };
