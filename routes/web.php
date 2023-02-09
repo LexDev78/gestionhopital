@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\VisiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,15 @@ Route::group(['middleware'=>'auth'],function()
         Route::get('profile',[UserController::class,"profile"])->name("user.profile");
         Route::post('user/up',[UserController::class,"update"])->name("user.up");
     //=====================================End Gestion Utilisateurs==========================//
+    //**Test */
+Route::resource('test', TestController::class);
+
+Route::resource('Visite', VisiteController::class);
 
 });
 //=========================================End Group Middleware Auth========================//
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');
+
+
+
+

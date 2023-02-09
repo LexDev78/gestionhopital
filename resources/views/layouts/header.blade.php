@@ -6,7 +6,7 @@
     </button>
 
     <!-- Topbar Search -->
-   
+
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -158,7 +158,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->nom." ".Auth::user()->prenom}}</span>
+                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->nom." ".Auth::user()->prenom}}</span> --}}
                 <img class="img-profile rounded-circle"
                     src="images/{{Auth::user()->profile}}">
             </a>
