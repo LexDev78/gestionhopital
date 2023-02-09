@@ -20,11 +20,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom')->nullable();
             $table->string('adresse')->nullable();
-<<<<<<< HEAD
             $table->string('telephone')->unique()->nullable();
-=======
-            $table->string('telephone')->nullable();
->>>>>>> e28ecb14cefd6c3ce4408bea9cb132c9fe0ae633
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

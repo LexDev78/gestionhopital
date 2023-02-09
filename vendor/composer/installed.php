@@ -4,6 +4,8 @@
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
         'reference' => '2c9aced81e997daeb1e6d42165633ae76c7befd3',
+        'reference' => 'e28ecb14cefd6c3ce4408bea9cb132c9fe0ae633',
+
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -376,7 +378,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => '2c9aced81e997daeb1e6d42165633ae76c7befd3',
+=======
+            'reference' => 'e28ecb14cefd6c3ce4408bea9cb132c9fe0ae633',
+>>>>>>> 899c6e88bbe773a6328b911fa3c8a8c4679c0496
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -392,9 +398,15 @@
             'dev_requirement' => true,
         ),
         'laravel/sail' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v1.20.0',
             'version' => '1.20.0.0',
             'reference' => '65dc0556d5809f47f7c39267df4e93f3cc59c512',
+=======
+            'pretty_version' => 'v1.20.1',
+            'version' => '1.20.1.0',
+            'reference' => '4b85dbfa3dceeaf7227e3029707562fd60297e86',
+>>>>>>> 899c6e88bbe773a6328b911fa3c8a8c4679c0496
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/sail',
             'aliases' => array(),
@@ -551,9 +563,9 @@
             'dev_requirement' => true,
         ),
         'nunomaduro/termwind' => array(
-            'pretty_version' => 'v1.15.0',
-            'version' => '1.15.0.0',
-            'reference' => '594ab862396c16ead000de0c3c38f4a5cbe1938d',
+            'pretty_version' => 'v1.15.1',
+            'version' => '1.15.1.0',
+            'reference' => '8ab0b32c8caa4a2e09700ea32925441385e4a5dc',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nunomaduro/termwind',
             'aliases' => array(),
