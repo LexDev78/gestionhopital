@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Billet_sortie extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }
