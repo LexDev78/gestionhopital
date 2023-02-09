@@ -1,5 +1,5 @@
 @ECHO OFF
 setlocal DISABLEDELAYEDEXPANSION
-SET BIN_TARGET=%~dp0/../laravel/sail/bin/sail
+SET BIN_TARGET=%~dp0/yaml-lint
 SET COMPOSER_RUNTIME_BIN_DIR=%~dp0
-bash "%BIN_TARGET%" %*
+php "%BIN_TARGET%" %*
