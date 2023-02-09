@@ -8,6 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Type_user;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
+
+    /**
+     * Acces au type utilisateur
+     */
+    public function type_user()
+    {
+        return $this->belongsTo(Type_user::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

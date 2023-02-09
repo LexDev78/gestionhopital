@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -19,19 +20,35 @@ use App\Http\Controllers\PatientController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->middleware("auth");
 
-Auth::routes();
+  //========================================Authentification=============================//  
+    Auth::routes();
+  //====================================End Authentification=============================//  
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');
+ //======================================Group Middleware Auth===========================//   
+Route::group(['middleware'=>'auth'],function()
+{
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/', function () {
+        return view('index');
+    })->name("home");
 
-
-//**Test */
+    //========================================Gestion Utilisateurs==========================//
+        Route::resource("user",UserController::class);
+        Route::get('profile',[UserController::class,"profile"])->name("user.profile");
+        Route::post('user/up',[UserController::class,"update"])->name("user.up");
+    //=====================================End Gestion Utilisateurs==========================//
+    //**Test */
 Route::resource('test', TestController::class);
 //Route Visite
 Route::resource('Visite', VisiteController::class);
 //Route patient
 Route::resource('Patient', PatientController::class);
+
+});
+//=========================================End Group Middleware Auth========================//
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');
+
+
+
 

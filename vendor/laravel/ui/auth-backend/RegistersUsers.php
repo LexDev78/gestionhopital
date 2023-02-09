@@ -6,7 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Type_users;
+use App\Models\Type_user;
 
 trait RegistersUsers
 {
@@ -19,7 +19,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        $typeUsers = Type_users::all();
+        $typeUsers = Type_user::all();
         return view('auth.register',compact("typeUsers"));
     }
 
