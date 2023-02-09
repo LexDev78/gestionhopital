@@ -15,6 +15,10 @@ class PatientController extends Controller
     public function index()
     {
         //
+
+        $patients = Patient::latest()->get();
+
+        return view('patient_crud.index', compact('patients'));
     }
 
     /**
@@ -36,6 +40,23 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'matricule' => 'required|max:14',
+            'nom' => 'required|max:200',
+            'prenom' => 'required|max:200',
+            'adresse' => 'required|max:200',
+            'telephone' => 'required|max:200',
+            'email' => 'required|max:200',
+
+        ]);
+        $patient = Patient::create([
+            'matricule' => $request->matricule,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'adresse' => $request->adresse,
+            'telephone' => $request->telephone,
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -67,9 +88,19 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(Request $request, $id)
     {
         //
+        $validateData = $this->validate($request, [
+            'matricule' => 'required|max:14',
+            'nom' => 'required|max:200',
+            'prenom' => 'required|max:200',
+            'adresse' => 'required|max:200',
+            'telephone' => 'required|max:200',
+            'email' => 'required|max:200',
+        ]);
+        $patient = Patient::whereId($id)->update($validateData);
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +109,11 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy($id)
     {
         //
+        $patient = Patient::findOrfail($id);
+        $patient->delete();
+        return redirect()->back();
     }
 }
