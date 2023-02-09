@@ -13,8 +13,8 @@ class Test extends Model
 
     protected $guarded = [];
 
-    public function patients(){
-        return $this->belongsToMany(Patient::class);
+    public function patient(){
+        return $this->belongsTo(Patient::class);
     }
 
     public function users(){
