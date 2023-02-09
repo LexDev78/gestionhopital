@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Visite;
-use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class VisiteController extends Controller
 {
@@ -16,6 +19,11 @@ class VisiteController extends Controller
     public function index()
     {
         //
+        $visites = Visite::latest()->get();
+        $patients = Patient::latest()->get();
+        $users = User::latest()->get();
+
+        return view('visite_crud.index', compact('visites', 'patients', 'users'));
     }
 
     /**
@@ -37,6 +45,22 @@ class VisiteController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request, [
+            'patient_id' => 'required',
+            'user_id' => 'required',
+            'date' => 'required',
+            'heure' => 'required',
+
+        ]);
+        $visite = Visite::create([
+            'patient_id' => $request->patient_id,
+            'user_id' => $request->user_id,
+            'date' => $request->date,
+            'heure' => $request->heure
+        ]);
+
+        // return redirect()->back()->with('success','Visiteur ajouter avec success');
     }
 
     /**
@@ -56,9 +80,10 @@ class VisiteController extends Controller
      * @param  \App\Models\Visite  $visite
      * @return \Illuminate\Http\Response
      */
-    public function edit(Visite $visite)
+    public function edit(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -68,9 +93,18 @@ class VisiteController extends Controller
      * @param  \App\Models\Visite  $visite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Visite $visite)
+    public function update(Request $request, $id)
     {
         //
+        $validateData = $this->validate($request, [
+            'patient_id' => 'required',
+            'user_id' => 'required',
+            'date' => 'required',
+            'heure' => 'required',
+        ]);
+        $visite = Visite::whereId($id)->update($validateData);
+
+        return redirect()->back()->with('success','Modifier avec success');
     }
 
     /**
@@ -79,8 +113,11 @@ class VisiteController extends Controller
      * @param  \App\Models\Visite  $visite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Visite $visite)
+    public function destroy( $id)
     {
         //
+        $visite = Visite::findOrfail($id);
+        $visite->delete();
+        return redirect()->back()->with('success','Supprimer avec success');
     }
 }

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\VisiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 
 //**Test */
 Route::resource('test', TestController::class);
+
+Route::resource('Visite', VisiteController::class);
+
