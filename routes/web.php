@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->middleware("auth");
 
-Auth::routes();
+  //========================================Authentification=============================//  
+    Auth::routes();
+  //====================================End Authentification=============================//  
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');
+ //======================================Group Middleware Auth===========================//   
+Route::group(['middleware'=>'auth'],function()
+{
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/', function () {
+        return view('index');
+    })->name("home");
+
+    //========================================Gestion Utilisateurs==========================//
+        Route::resource("user",UserController::class);
+        Route::get('profile',[UserController::class,"profile"])->name("user.profile");
+        Route::post('user/up',[UserController::class,"update"])->name("user.up");
+    //=====================================End Gestion Utilisateurs==========================//
+
+});
+//=========================================End Group Middleware Auth========================//

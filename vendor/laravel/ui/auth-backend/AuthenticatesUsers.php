@@ -2,7 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Models\Type_users;
+use App\Models\Type_user;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +20,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        $typeUsers = Type_users::all();
+        $typeUsers = Type_user::all();
         return view('auth.login',compact("typeUsers"));
     }
 
