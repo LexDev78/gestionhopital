@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PaiementController;
 
 
 /*
@@ -38,12 +39,18 @@ Route::group(['middleware'=>'auth'],function()
         Route::get('profile',[UserController::class,"profile"])->name("user.profile");
         Route::post('user/up',[UserController::class,"update"])->name("user.up");
     //=====================================End Gestion Utilisateurs==========================//
+    
     //**Test */
 Route::resource('test', TestController::class);
+
 //Route Visite
 Route::resource('Visite', VisiteController::class);
+
 //Route patient
 Route::resource('Patient', PatientController::class);
+
+//Route paiements
+Route::resource('Paiement', PaiementController::class);
 
 });
 //=========================================End Group Middleware Auth========================//

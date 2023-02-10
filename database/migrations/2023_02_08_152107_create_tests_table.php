@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId("user_id")->constrained();
             $table->foreignId("patient_id")->constrained();
             $table->string('nom');
-            $table->string('prix');
+            $table->integer('prix');
             $table->timestamps();
         });
     }
