@@ -59,7 +59,7 @@
                         <a class="collapse-item" href="{{route('Patient.index')}}">Patients</a>
                         <a class="collapse-item" href="{{route('Visite.index')}}">Visite</a>
                         <a class="collapse-item" href="{{route('test.index')}}">Test</a>
-                        <a class="collapse-item" href="utilities-other.html">Paiements</a>
+                        <a class="collapse-item" href="{{route('Paiement.index')}}">Paiements</a>
                     </div>
                 </div>
             </li>
