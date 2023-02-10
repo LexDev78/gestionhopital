@@ -19,9 +19,9 @@ class TestController extends Controller
     public function index()
     {
         $test= Test::all();
-        $patient=Patient::all();
+        $patients=Patient::all();
         $users = User::all();
-        return view('test_crud.index', compact('test','patient','users'));
+        return view('test_crud.index', compact('test','patients','users'));
     }
 
     /**
@@ -45,45 +45,44 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        $test =Test::create([
+        $this->validate($request, [
             "user_id" => $request->user_id,
             "patient_id" => $request->patient_id,
             "nom" => $request->nom,  
             "prix" =>  $request->prix
-            
-        ]);
-        if($test){
-            $test=Test::all();
-            $patient=Patient::all();
-            $users= User::all();
-            return view('test_crud.index', compact('test','patient','users'));
-            return redirect('/test');
-        }
 
-        return redirect()->back();
+        ]);
+        $tests = Test::create([
+            'user_id' => $request->user_id,
+            'patient_id' => $request->patient_id,
+            'nom' => $request->nom,
+            'prix' => $request->prix
+        ]);
+
+
     }
     
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     *  @param  \App\Models\Test  $tests
      * @return \Illuminate\Http\Response
      */
-    public function show(Test $test)
+    public function show(Test $tests)
     {
-        return view("test_crud.show", compact("test"));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Test  $tests
      * @return \Illuminate\Http\Response
      */
-    public function edit(Test $test)
+    public function edit(Test $tests)
     {
-        return view('test_crud.edit', compact('test'));
+        //
     }
 
     /**
@@ -91,42 +90,34 @@ class TestController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \App\Models\Test  $tests
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $test)
+    public function update(Request $request, $id)
     {
-        $test = Test::find($test);
-        $validatedData = $request->validate([
-        'user_id' => 'required',
-        'patient_id' => 'required',
-        'nom'=>'required',
-        'prix'=>'required'
-    ]);
+        //
+        $validateData = $this->validate($request, [
+            'user_id' => 'required',
+            'patient_id' => 'required',
+            'nom' => 'required',
+            'prix' => 'required',
+        ]);
+        $tests = Test::whereId($id)->update($validateData);
 
-        $tests = $test->update([
-                    "user_id" => $request -> user_id,
-                    "patient_id"  => $request -> patient_id,
-                    "nom" => $request->nom,
-                    "prix" => $request->prix
-                ]);
-        if($tests){
-         return redirect('/test')->with('Avec success !!!');
-
-        }
-        return redirect()->back();
+        return redirect()->back()->with('success','Modifier avec success!!!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+
+     * @param  \App\Models\Test  $tests
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Test $test)
+    public function destroy( $id)
     {
-        $test = Test::findOrFail($test->id);
-        $test->delete();
-    
-        return redirect('/test')->with('Avec success !!!');
+        $tests = Test::findOrfail($id);
+        $tests->delete();
+        return redirect()->back()->with('success','Supprimer avec success');
     }
 }
