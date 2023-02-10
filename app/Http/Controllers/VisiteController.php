@@ -21,7 +21,7 @@ class VisiteController extends Controller
         //
         $visites = Visite::latest()->get();
         $patients = Patient::latest()->get();
-        $users = User::latest()->get();
+        $users = User::where('type_user_id', 1)->get();
 
         return view('visite_crud.index', compact('visites', 'patients', 'users'));
     }
@@ -60,7 +60,7 @@ class VisiteController extends Controller
             'heure' => $request->heure
         ]);
 
-        // return redirect()->back()->with('success','Visiteur ajouter avec success');
+        return redirect()->back()->with('success','Visiteur ajouter avec success');
     }
 
     /**

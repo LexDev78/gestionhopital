@@ -19,6 +19,8 @@ class PatientController extends Controller
         $patients = Patient::latest()->get();
 
         return view('patient_crud.index', compact('patients'));
+
+
     }
 
     /**
@@ -41,7 +43,6 @@ class PatientController extends Controller
     {
         //
         $this->validate($request, [
-            'matricule' => 'required|max:14',
             'nom' => 'required|max:200',
             'prenom' => 'required|max:200',
             'adresse' => 'required|max:200',
@@ -49,13 +50,20 @@ class PatientController extends Controller
             'email' => 'required|max:200',
 
         ]);
+
+
         $patient = Patient::create([
-            'matricule' => $request->matricule,
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
         ]);
+        //Immatriculation
+        $id = $patient->id;
+        $matricule =   'P' . str_pad($id, 4, '0', STR_PAD_LEFT);
+        $patient->matricule = $matricule;
+        $patient->save();
+
         return redirect()->back();
     }
 
