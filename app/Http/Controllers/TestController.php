@@ -31,10 +31,10 @@ class TestController extends Controller
      */
     public function create()
     {
-        $test=Test::all();
-        $patient=Patient::all();
-        $users=User::all();
-        return view("test_crud.index", compact('test', 'patient', 'users'));
+        // $test=Test::all();
+        // $patient=Patient::all();
+        // $users=User::all();
+        // return view("test_crud.index", compact('test', 'patient', 'users'));
     }
 
     /**
@@ -46,22 +46,22 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "user_id" => $request->user_id,
-            "patient_id" => $request->patient_id,
-            "nom" => $request->nom,  
-            "prix" =>  $request->prix
+            "user_id" => 'required',
+            "patient_id" => 'required',
+            "nom" => 'required',
+            "prix" => 'required'
 
         ]);
-        $tests = Test::create([
+        $test = Test::create([
             'user_id' => $request->user_id,
             'patient_id' => $request->patient_id,
             'nom' => $request->nom,
             'prix' => $request->prix
         ]);
-
+        return redirect()->back();
 
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -102,7 +102,7 @@ class TestController extends Controller
             'nom' => 'required',
             'prix' => 'required',
         ]);
-        $tests = Test::whereId($id)->update($validateData);
+        $test = Test::whereId($id)->update($validateData);
 
         return redirect()->back()->with('success','Modifier avec success!!!');
     }
@@ -116,8 +116,8 @@ class TestController extends Controller
      */
     public function destroy( $id)
     {
-        $tests = Test::findOrfail($id);
-        $tests->delete();
+        $test = Test::findOrfail($id);
+        $test->delete();
         return redirect()->back()->with('success','Supprimer avec success');
     }
 }
