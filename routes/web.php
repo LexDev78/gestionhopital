@@ -31,7 +31,7 @@ Route::group(['middleware'=>'auth'],function()
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/', function () {
         return view('index');
-    })->name("home");
+    })->name("index");
 
     //========================================Gestion Utilisateurs==========================//
         Route::resource("user",UserController::class);
