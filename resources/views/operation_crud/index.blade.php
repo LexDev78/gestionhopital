@@ -238,12 +238,13 @@
                             <div class="col-md-6">
                             <div class="form-group has-icon-left">
                             <div class="position-relative">
-                                    <select name="user_id" class="form-control" id="user" >
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->nom }}"></option>
-                                        <option value="{{$user->id}}">{{$user -> username}}</option>
-                                    @endforeach
-                                    </select>
+                                    <input  list="username" name="username" class="form-control">
+                                    <datalist id="user_id">
+                                        @foreach($users as $user)
+                                            <option value="{{$user -> id}}">{{$user->username}}</option>
+                                        @endforeach
+                                    </datalist>                                   
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -251,12 +252,12 @@
                     <div class="col-md-6">
                         <div class="form-group has-icon-left">
                             <div class="position-relative">
-                                <select name="patient_id" class="form-control" id="patient" >
-                                    @foreach($patients as $patient)
-                                        <option value="{{ $patient->nom }}"></option>
-                                        <option value="{{$patient -> id}}">{{$patient -> nom}}</option>
-                                    @endforeach
-                                </select>
+                            <input  list="patient_id" name="patient_matricule" class="form-control">
+                                    <datalist id="patient_id">
+                                        @foreach($patients as $patient)
+                                            <option value="{{$patient -> matricule}}">{{$patient->nom." ".$patient->prenom}}</option>
+                                        @endforeach
+                                    </datalist>   
                             </div>
                         </div>
                     </div>
