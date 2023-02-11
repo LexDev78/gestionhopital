@@ -5,7 +5,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('index')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    CHU 
+                    CHU
                 </div>
                 <div class="sidebar-brand-text mx-3">Gabriel Toure<sup></sup></div>
             </a>
@@ -60,6 +60,8 @@
                         <a class="collapse-item" href="{{route('Visite.index')}}">Visite</a>
                         <a class="collapse-item" href="{{route('test.index')}}">Test</a>
                         <a class="collapse-item" href="{{route('Paiement.index')}}">Paiements</a>
+                        <a class="collapse-item" href="{{route('traitement.index')}}">Traitement</a>
+                        <a class="collapse-item" href="{{route('salle.index')}}">Salle</a>
                     </div>
                 </div>
             </li>
@@ -115,7 +117,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-           
+
 
         </ul>
         <!-- End of Sidebar -->
