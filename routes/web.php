@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OperationController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiteController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\TraitementController;
+use App\Http\Controllers\RapportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,12 @@ Route::resource('salle', SalleController::class);
 
 //Route traitement
 Route::resource('traitement', TraitementController::class);
+
+//Route rapport
+Route::resource('rapport', RapportController::class);
+
+//Route operation
+Route::resource('operation', OperationController::class);
 
 });
 //=========================================End Group Middleware Auth========================//
