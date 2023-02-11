@@ -59,6 +59,9 @@ Route::resource('salle', SalleController::class);
 //Route traitement
 Route::resource('traitement', TraitementController::class);
 
+//Route rapport
+Route::resource('rapport', RapportController::class);
+
 });
 //=========================================End Group Middleware Auth========================//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');

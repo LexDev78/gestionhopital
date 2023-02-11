@@ -14,7 +14,10 @@ class RapportController extends Controller
      */
     public function index()
     {
-        //
+        $rapport= Rapport::all();
+        $patients=Patient::all();
+        $users = User::all();
+        return view('rapport_crud.index', compact('rapport','patients','users'));
     }
 
     /**
