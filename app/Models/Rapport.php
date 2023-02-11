@@ -10,7 +10,7 @@ Use App\Models\Patient;
 class Rapport extends Model
 {
     use HasFactory;
-    protected $guaded = [];
+    protected $guarded = [];
 
     public function user()
     {

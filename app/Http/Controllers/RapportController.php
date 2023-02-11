@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rapport;
+use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RapportController extends Controller
@@ -28,6 +30,10 @@ class RapportController extends Controller
     public function create()
     {
         //
+        $rapport=Rapport::all();
+         $patient=Patient::all();
+         $users=User::all();
+         return view("rapport_crud.index", compact('rapport', 'patient', 'users'));
     }
 
     /**
@@ -38,7 +44,29 @@ class RapportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "description" => 'required',
+            "resultat" => 'required',
+            "piece_jointe" => 'required',
+            "patient_id" => 'required',
+            "user_id" => 'required'
+           
+           
+
+
+        ]);
+        $rapport = Rapport::create([
+            'description' => $request->description,
+            'resultat' => $request->resultat,
+            'piece_jointe' => $request->resultat,
+            'patient_id' => $request->patient_id,
+            'user_id' => $request->user_id,
+            
+           
+
+
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -70,9 +98,21 @@ class RapportController extends Controller
      * @param  \App\Models\Rapport  $rapport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rapport $rapport)
+    public function update(Request $request, $id )
     {
-        //
+
+        $validateData =  $this->validate($request, [
+            "description" => 'required',
+            "resultat" => 'required',
+            "piece_jointe" => 'required',
+            "patient_id" => 'required',
+            "user_id" => 'required'          
+           
+        ]);
+
+        $rapport = Rapport::whereId($id)->update($validateData);
+
+        return redirect()->back()->with('success','Modifier avec success!!!');
     }
 
     /**
@@ -81,8 +121,10 @@ class RapportController extends Controller
      * @param  \App\Models\Rapport  $rapport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rapport $rapport)
+    public function destroy($id)
     {
-        //
+        $rapport = Rapport::findOrfail($id);
+        $rapport->delete();
+        return redirect()->back()->with('success','Supprimer avec success');
     }
 }

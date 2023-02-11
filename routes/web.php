@@ -10,6 +10,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PaiementController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\TraitementController;
+use App\Http\Controllers\RapportController;
 
 /*
 |--------------------------------------------------------------------------
