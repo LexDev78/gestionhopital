@@ -214,7 +214,7 @@
 
 
     <!-- Boite modale pour l'ajout d'une carte-->
-    <div class="modal fade admin-query" id="testAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+    <div class="modal fade admin-query" id="operationAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
     role="dialog" tabindex="-1">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
