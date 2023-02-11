@@ -20,8 +20,9 @@
                                     <table class="table table-lg">
                                         <thead>
                                             <tr>
-                                                <th>Patient Nom</th>
-                                                <th>User Nom</th>
+                                                <th>Matricule</th>
+                                                <th>Patients</th>
+                                                <th>Medecin</th>
                                                 <th>Date</th>
                                                 <th>Heure</th>
                                                 <th colspan="4" style="text-align: center">Actions</th>
@@ -31,8 +32,9 @@
                                             @forelse ($visites as $visite)
                                             <tr>
 
-                                                    <td class="text-bold-500">{{$visite->patient_id}}</td>
-                                                    <td class="text-bold-500">{{$visite->user_id}}</td>
+                                                    <td class="text-bold-500">{{$visite->patient->matricule}}</td>
+                                                    <td class="text-bold-500">{{$visite->patient->prenom." ".$visite->patient->nom}}</td>
+                                                    <td class="text-bold-500">{{$visite->user->prenom." ".$visite->user->nom}}</td>
                                                     <td class="text-bold-500">{{$visite->date}}</td>
                                                     <td class="text-bold-500">{{$visite->heure}}</td>
                                                     <td>
@@ -178,8 +180,8 @@
                                                         @csrf
                                                         <div class="form-body">
                                                             <p>
-                                                                Êtes-vous sur de vouloir supprimé :
-                                                                {{$visite->date}} ?
+                                                                Êtes-vous sur de vouloir supprimé la visite de  :
+                                                                {{$visite->patient->prenom." ".$visite->patient->nom}} ?
                                                             </p>
                                                         </div>
 
@@ -241,12 +243,12 @@ role="dialog" tabindex="-1">
                         <div class="col-md-6">
                             <div class="form-group has-icon-left">
                                 <div class="position-relative">
-                                    <select name="patient_id" class="form-control" id="patient" >
-                                         <option>-- Choisir le Patient --</option>
-                                        @foreach($patients as $patient)
-                                            <option value="{{$patient -> id}}">{{$patient -> nom}}</option>
+                                    <input  list="patient_id" name="patient_matricule" class="form-control">
+                                    <datalist id="patient_id">
+                                        @foreach($users as $user)
+                                            <option value="{{$patient -> matricule}}">{{$patient->nom." ".$patient->prenom}}</option>
                                         @endforeach
-                                    </select>
+                                    </datalist>                                   
                                 </div>
                             </div>
                         </div>
@@ -255,13 +257,12 @@ role="dialog" tabindex="-1">
                         <div class="col-md-6">
                             <div class="form-group has-icon-left">
                                 <div class="position-relative">
-                                        <select name="user_id" class="form-control" id="user" >
-                                             <option>-- Choisir le Medecin --</option>
+                                    <input  list="dataliste" name="user_id" class="form-control">
+                                    <datalist id="dataliste">
                                         @foreach($users as $user)
-
-                                            <option value="{{$user->id}}">{{$user -> username}}</option>
+                                            <option value="{{$user->id}}">{{$user->nom." ".$user->prenom}}</option>
                                         @endforeach
-                                        </select>
+                                    </datalist>
                                 </div>
                             </div>
                         </div>

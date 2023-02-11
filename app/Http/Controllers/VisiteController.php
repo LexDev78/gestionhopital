@@ -47,14 +47,15 @@ class VisiteController extends Controller
         //
 
         $this->validate($request, [
-            'patient_id' => 'required',
+            'patient_matricule' => 'required',
             'user_id' => 'required',
             'date' => 'required',
             'heure' => 'required',
 
         ]);
+        $patient = Patient::where('matricule',$request->patient_matricule)->first();
         $visite = Visite::create([
-            'patient_id' => $request->patient_id,
+            'patient_id' =>  $patient->id,
             'user_id' => $request->user_id,
             'date' => $request->date,
             'heure' => $request->heure

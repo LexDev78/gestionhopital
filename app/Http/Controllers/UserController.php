@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Type_user;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,8 +21,9 @@ class UserController extends Controller
     public function index()
     {
         //
+        $types = Type_user::all();
         $users = User::all();
-        return view("pages.users.index",compact("users"));
+        return view("pages.users.index",compact("users",'types'));
     }
 
     /**
@@ -42,6 +45,29 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+                    'type_user_id' => ['required', 'integer', 'max:255'],
+                    'status' => ['required', 'integer', 'max:255'],
+                    'nom' => ['required', 'string', 'max:255'],
+                    'prenom' => ['required', 'string', 'max:255'],
+                    'telephone' => ['required', 'string','min:8', 'max:14'],
+                    'username' => ['required', 'string', 'max:255', 'unique:users'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['required', 'string', 'min:8'],
+                ]);
+        DB::beginTransaction();
+        try{
+            $password = Hash::make($request->password);
+            $user = User::create($data);
+            $user->password = $password;
+            $user->save();
+            DB::commit();
+
+        }catch(\Exception $e)
+        {
+            DB::rollBack();
+        }
+        return redirect()->back();
     }
 
     /**

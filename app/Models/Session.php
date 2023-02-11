@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 Use App\Models\User;
 
-class Type_users extends Model
+class Session extends Model
 {
     use HasFactory;
-    
-    public function users()
-     {
-        return $this->hasMany(User::class);
-     }
+    protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
