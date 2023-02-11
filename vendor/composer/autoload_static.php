@@ -580,6 +580,7 @@ class ComposerStaticInitc7a0ad02a3ff776c105d749220a63cd6
         'App\\Http\\Controllers\\RapportController' => __DIR__ . '/../..' . '/app/Http/Controllers/RapportController.php',
         'App\\Http\\Controllers\\SalleController' => __DIR__ . '/../..' . '/app/Http/Controllers/SalleController.php',
         'App\\Http\\Controllers\\ServiceSpecialiseController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServiceSpecialiseController.php',
+        'App\\Http\\Controllers\\SessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/SessionController.php',
         'App\\Http\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestController.php',
         'App\\Http\\Controllers\\TraitementController' => __DIR__ . '/../..' . '/app/Http/Controllers/TraitementController.php',
         'App\\Http\\Controllers\\TypeUsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/TypeUsersController.php',
