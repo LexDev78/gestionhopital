@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Salle;
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class SalleController extends Controller
@@ -16,6 +17,9 @@ class SalleController extends Controller
     public function index()
     {
         //
+        $salles = Salle::latest()->get();
+        $patients = Patient::latest()->get();
+        return view('salle_crud.index', compact('salles', 'patients'));
     }
 
     /**
@@ -37,6 +41,19 @@ class SalleController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'nom' => 'required|max:200',
+            'patient_id' => 'required',
+            'numero' => 'required'
+
+        ]);
+        $salle = Salle::create([
+            'nom' => $request->nom,
+            'patient_id' => $request->patient_id,
+            'numero' => $request->numero
+        ]);
+
+        return redirect()->back()->with('Success', 'Salle ajouter avec success');
     }
 
     /**
@@ -68,9 +85,17 @@ class SalleController extends Controller
      * @param  \App\Models\Salle  $salle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Salle $salle)
+    public function update(Request $request, $id)
     {
         //
+        $validateData = $this->validate($request, [
+            'nom' => 'required|max:200',
+            'patient_id' => 'required',
+            'numero' => 'required'
+        ]);
+
+        $salle = Salle::whereId($id)->update($validateData);
+        return redirect()->back()->with('Success', 'Salle modifier avec success');
     }
 
     /**
@@ -79,8 +104,12 @@ class SalleController extends Controller
      * @param  \App\Models\Salle  $salle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Salle $salle)
+    public function destroy($id)
     {
         //
+        $salle = Salle::findOrfail($id);
+        $salle->delete();
+        return redirect()->back()->with('Success', 'Salle supprimer avec success');
+
     }
 }

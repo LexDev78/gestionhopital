@@ -9,45 +9,43 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Visiteur enregistrés</h4>
+                        <h4 class="card-title">Salle enregistrés</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
                             <p class="card-text">Pour <a href="" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#visiteAdd">insérer un nouvelle ligne</a></p>
+                                data-bs-target="#salleAdd">insérer un nouvelle ligne</a></p>
                                 <!-- Table with outer spacing -->
                                 <div class="table-responsive">
                                     <table class="table table-lg">
                                         <thead>
                                             <tr>
+                                                <th>Nom</th>
                                                 <th>Patient Nom</th>
-                                                <th>User Nom</th>
-                                                <th>Date</th>
-                                                <th>Heure</th>
+                                                <th>Numero</th>
                                                 <th colspan="4" style="text-align: center">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($visites as $visite)
+                                            @forelse ($salles as $salle)
                                             <tr>
 
-                                                    <td class="text-bold-500">{{$visite->patient->nom}}</td>
-                                                    <td class="text-bold-500">{{$visite->user->nom}}</td>
-                                                    <td class="text-bold-500">{{$visite->date}}</td>
-                                                    <td class="text-bold-500">{{$visite->heure}}</td>
+                                                    <td class="text-bold-500">{{$salle->nom}}</td>
+                                                    <td class="text-bold-500">{{$salle->patient_id}}</td>
+                                                    <td class="text-bold-500">{{$salle->numero}}</td>
                                                     <td>
                                                 </td>
 
 
                                             <td>
                                                 <a class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#visiteUpdate{{$visite->id}}" href="#">
+                                                data-bs-target="#salleUpdate{{$salle->id}}" href="#">
                                                 Modifier
                                             </a>
                                         </td>
                                         <td>
                                             <a class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#visiteDestroy{{$visite->id}}" href="#">
+                                            data-bs-target="#salleDestroy{{$salle->id}}" href="#">
                                             Supprimer
                                         </a>
                                     </td>
@@ -60,7 +58,7 @@
 
 
                         <!-- Boite modale pour la modification des visites-->
-                            <div class="modal fade admin-query" id="visiteUpdate{{$visite->id}}"
+                            <div class="modal fade admin-query" id="salleUpdate{{$salle->id}}"
                             data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
                             role="dialog" tabindex="-1">
                             <div class="modal-dialog" role="document">
@@ -76,12 +74,24 @@
                                     <div class="modal-body">
                                         <p class="text-wrap">
                                             <form method="POST"
-                                            action="{{route('Visite.update', $visite->id)}}"
+                                            action="{{route('salle.update', $salle->id)}}"
                                             enctype="multipart/form-data">
                                             @method('PUT')
                                             @csrf
                                             <div class="form-body">
                                                 <div class="row">
+
+                                                     <div class="col-md-6">
+                                                        <div class="form-group has-icon-left">
+                                                            <div class="position-relative">
+                                                                <input type="nom" autocomplete="off" name="nom"
+                                                                class="form-control" value="{{ $salle->nom }}" placeholder="Nom de la salle !...">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-pencil"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="col-md-6">
                                                         <div class="form-group has-icon-left">
@@ -98,36 +108,12 @@
                                                     </div>
 
 
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <div class="position-relative">
-                                                                    <select name="user_id" class="form-control" id="user" >
-                                                                    @foreach($users as $user)
-                                                                        <option value="">{{ $user->nom }}</option>
-                                                                        <option value="{{$user->id}}">{{$user -> username}}</option>
-                                                                    @endforeach
-                                                                    </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
                                                     <div class="col-md-6">
                                                         <div class="form-group has-icon-left">
                                                             <div class="position-relative">
-                                                                <input type="date" autocomplete="off" name="date"
-                                                                class="form-control" value="{{ $visite->date }}" placeholder="Date !...">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-pencil"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group has-icon-left">
-                                                            <div class="position-relative">
-                                                                <input type="time" autocomplete="off" name="heure"
-                                                                class="form-control" value="{{ $visite->heure }}" placeholder="Heure!...">
+                                                                <input type="number" autocomplete="off" name="numero"
+                                                                class="form-control" value="{{ $salle->numero }}" placeholder="Numero de la salle!...">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-pencil"></i>
                                                                 </div>
@@ -157,7 +143,7 @@
                                 <!-- End boite modale -->
 
                                 <!-- Boite modale pour la confirmation de suppression d'une carte -->
-                                <div class="modal fade admin-query" id="visiteDestroy{{$visite->id}}"
+                                <div class="modal fade admin-query" id="salleDestroy{{$salle->id}}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
                                     role="dialog" tabindex="-1">
                                     <div class="modal-dialog" role="document">
@@ -172,14 +158,14 @@
 
                                             <div class="modal-body">
                                                 <p class="text-wrap">
-                                                    <form action="{{route('Visite.destroy', $visite->id)}}"
+                                                    <form action="{{route('salle.destroy', $salle->id)}}"
                                                         method="POST">
                                                         @method("DELETE")
                                                         @csrf
                                                         <div class="form-body">
                                                             <p>
                                                                 Êtes-vous sur de vouloir supprimé :
-                                                                {{$visite->date}} ?
+                                                                {{$salle->nom}} ?
                                                             </p>
                                                         </div>
 
@@ -217,7 +203,7 @@
 
 
 <!-- Boite modale pour l'ajout d'une carte-->
-<div class="modal fade admin-query" id="visiteAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+<div class="modal fade admin-query" id="salleAdd" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
 role="dialog" tabindex="-1">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
@@ -233,63 +219,50 @@ role="dialog" tabindex="-1">
 
         <p class="text-wrap">
 
-            <form method="POST" action="{{route('Visite.store')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('salle.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-body">
                     <div class="row">
 
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <select name="patient_id" class="form-control" id="patient" >
-                                         <option>-- Choisir le Patient --</option>
-                                        @foreach($patients as $patient)
-                                            <option value="{{$patient -> id}}">{{$patient -> nom}}</option>
-                                        @endforeach
-                                    </select>
+                       <div class="col-md-6">
+                        <div class="form-group has-icon-left">
+                            <div class="position-relative">
+                                <input type="nom" autocomplete="off" name="nom"
+                                class="form-control" placeholder="Nom de la salle !...">
+                                <div class="form-control-icon">
+                                    <i class="bi bi-pencil"></i>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group has-icon-left">
+                            <div class="position-relative">
+                                <select name="patient_id" class="form-control" id="patient" >
+                                    <option value="">-- Choisir un Patient --</option>
+                                    @foreach($patients as $patient)
+
+                                    <option value="{{$patient -> id}}">{{$patient -> nom}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
 
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                        <select name="user_id" class="form-control" id="user" >
-                                             <option>-- Choisir le Medecin --</option>
-                                        @foreach($users as $user)
 
-                                            <option value="{{$user->id}}">{{$user -> username}}</option>
-                                        @endforeach
-                                        </select>
+                    <div class="col-md-6">
+                        <div class="form-group has-icon-left">
+                            <div class="position-relative">
+                                <input type="number" autocomplete="off" name="numero"
+                                class="form-control"  placeholder="Numero de la salle!...">
+                                <div class="form-control-icon">
+                                    <i class="bi bi-pencil"></i>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="date" autocomplete="off" name="date"
-                                    class="form-control" value="" placeholder="Date !...">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-pencil"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="time" autocomplete="off" name="heure"
-                                    class="form-control" value="" placeholder="Heure!...">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-pencil"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    </div>
                     </div>
                 </div>
             </p>

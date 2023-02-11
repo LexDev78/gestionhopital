@@ -50,6 +50,11 @@ class User extends Authenticatable
 
     public function visites(){
 
-        return $this->belongsToMany(Visite::class);
+        return $this->hasMany(Visite::class);
+    }
+
+    public function traitements()
+    {
+        return $this->hasMany(Traitement::class);
     }
 }

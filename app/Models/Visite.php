@@ -13,11 +13,11 @@ class Visite extends Model
 
     protected $guarded = [];
 
-    public function users(){
-        return $this->belongsToMany(User::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
-    public function patients(){
-        return $this->belongsToMany(Patient::class);
+    public function patient(){
+        return $this->belongsTo(Patient::class);
     }
 }
