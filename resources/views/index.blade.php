@@ -8,6 +8,14 @@
 @endsection
 @section("sous-litle","Rapport du mois")
 @section("content")
+     <?php 
+        use App\Models\Patient;
+        use App\Models\User;
+        use App\Models\Visite;
+        use App\Models\Paiement;
+        use App\Models\Operation;
+        use App\Models\Salle;
+      ?>
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
@@ -19,7 +27,7 @@
                         </span>
                         <div class="media-body text-white text-right">
                             <p class="mb-1">Total Patients</p>
-                            <h3 class="text-white">783K</h3>
+                            <h3 class="text-white">{{count(Patient::all())}}</h3>
                         </div>
                     </div>
                 </div>
@@ -34,7 +42,7 @@
                         </span>
                         <div class="media-body text-white text-right">
                             <p class="mb-1">Medecins</p>
-                            <h3 class="text-white">76</h3>
+                            <h3 class="text-white">{{count(User::where('type_user_id',1)->get())}}</h3>
                         </div>
                     </div>
                 </div>
@@ -49,7 +57,7 @@
                         </span>
                         <div class="media-body text-white">
                             <p class="mb-1">Total de visite</p>
-                            <h3 class="text-white">3280</h3>
+                            <h3 class="text-white">{{count(Patient::all())}}</h3>
                             <div class="progress mb-2 bg-secondary">
                                 <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
                             </div>
@@ -68,7 +76,7 @@
                         </span>
                         <div class="media-body text-white">
                             <p class="mb-1">Gestion des Salles</p>
-                            <h3 class="text-white">245</h3>
+                            <h3 class="text-white">{{count(Salle::all())}}</h3>
                             <div class="progress mb-2 bg-primary">
                                 <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
                             </div>
@@ -87,7 +95,7 @@
                         </span>
                         <div class="media-body text-white">
                             <p class="mb-1">Operations Programmées</p>
-                            <h3 class="text-white">28</h3>
+                            <h3 class="text-white">{{count(Operation::all())}}</h3>
                             <div class="progress mb-2 bg-primary">
                                 <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
                             </div>
@@ -106,7 +114,7 @@
                         </span>
                         <div class="media-body text-white">
                             <p class="mb-1">Frais et paiements</p>
-                            <h3 class="text-white">250$</h3>
+                            <h3 class="text-white">{{count(Paiement::all())}}</h3>
                             <div class="progress mb-2 bg-secondary">
                                 <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
                             </div>

@@ -61,7 +61,7 @@ class VisiteController extends Controller
             'heure' => $request->heure
         ]);
 
-        return redirect()->back()->with('success','Visiteur ajouter avec success');
+        return redirect()->back()->with('success','Visite creer avec success');
     }
 
     /**

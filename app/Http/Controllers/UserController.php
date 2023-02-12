@@ -50,7 +50,7 @@ class UserController extends Controller
                     'status' => ['required', 'integer', 'max:255'],
                     'nom' => ['required', 'string', 'max:255'],
                     'prenom' => ['required', 'string', 'max:255'],
-                    'telephone' => ['required', 'string','min:8', 'max:14'],
+                    'telephone' => ['required', 'string','min:8', 'max:14', 'unique:users'],
                     'username' => ['required', 'string', 'max:255', 'unique:users'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                     'password' => ['required', 'string', 'min:8'],
@@ -62,12 +62,13 @@ class UserController extends Controller
             $user->password = $password;
             $user->save();
             DB::commit();
-
+            return redirect()->back()->with('success','Utilisateur créer avec success');
         }catch(\Exception $e)
         {
             DB::rollBack();
+            return redirect()->back()->with('error','creation de l\'utilisateur echoué !');
+
         }
-        return redirect()->back();
     }
 
     /**

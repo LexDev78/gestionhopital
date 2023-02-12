@@ -31,7 +31,7 @@
                                             <tr>
 
                                                     <td class="text-bold-500">{{$salle->nom}}</td>
-                                                    <td class="text-bold-500">{{$salle->patient_id}}</td>
+                                                    <td class="text-bold-500">{{$salle->patient->prenom." ".$salle->patient->nom}}</td>
                                                     <td class="text-bold-500">{{$salle->numero}}</td>
                                                     <td>
                                                 </td>
@@ -164,7 +164,7 @@
                                                         @csrf
                                                         <div class="form-body">
                                                             <p>
-                                                                Êtes-vous sur de vouloir supprimé :
+                                                                Êtes-vous sur de vouloir supprimé la salle :
                                                                 {{$salle->nom}} ?
                                                             </p>
                                                         </div>
