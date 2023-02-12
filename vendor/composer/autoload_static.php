@@ -601,6 +601,7 @@ class ComposerStaticInitc7a0ad02a3ff776c105d749220a63cd6
         'App\\Models\\Operation' => __DIR__ . '/../..' . '/app/Models/Operation.php',
         'App\\Models\\Paiement' => __DIR__ . '/../..' . '/app/Models/Paiement.php',
         'App\\Models\\Patient' => __DIR__ . '/../..' . '/app/Models/Patient.php',
+        'App\\Models\\Prescription' => __DIR__ . '/../..' . '/app/Models/Prescription.php',
         'App\\Models\\Rapport' => __DIR__ . '/../..' . '/app/Models/Rapport.php',
         'App\\Models\\Salle' => __DIR__ . '/../..' . '/app/Models/Salle.php',
         'App\\Models\\Service_specialise' => __DIR__ . '/../..' . '/app/Models/Service_specialise.php',
