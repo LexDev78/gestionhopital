@@ -245,7 +245,7 @@ role="dialog" tabindex="-1">
                                 <div class="position-relative">
                                     <input  list="patient_id" name="patient_matricule" class="form-control">
                                     <datalist id="patient_id">
-                                        @foreach($users as $user)
+                                        @foreach($patients as $patient)
                                             <option value="{{$patient -> matricule}}">{{$patient->nom." ".$patient->prenom}}</option>
                                         @endforeach
                                     </datalist>                                   

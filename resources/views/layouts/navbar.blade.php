@@ -62,6 +62,8 @@
                         <a class="collapse-item" href="{{route('Paiement.index')}}">Paiements</a>
                         <a class="collapse-item" href="{{route('traitement.index')}}">Traitement</a>
                         <a class="collapse-item" href="{{route('salle.index')}}">Salle</a>
+                        <a class="collapse-item" href="{{route('rapport.index')}}">Rapport</a>
+                        <a class="collapse-item" href="{{route('operation.index')}}">Operation</a>
                     </div>
                 </div>
             </li>

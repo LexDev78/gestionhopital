@@ -44,28 +44,28 @@ Route::group(['middleware'=>'auth'],function()
     //=====================================End Gestion Utilisateurs==========================//
 
     //**Test */
-Route::resource('test', TestController::class);
+    Route::resource('test', TestController::class);
 
-//Route Visite
-Route::resource('Visite', VisiteController::class);
+    //Route Visite
+    Route::resource('Visite', VisiteController::class);
 
-//Route patient
-Route::resource('Patient', PatientController::class);
+    //Route patient
+    Route::resource('Patient', PatientController::class);
 
-//Route paiements
-Route::resource('Paiement', PaiementController::class);
+    //Route paiements
+    Route::resource('Paiement', PaiementController::class);
 
-//Route salle
-Route::resource('salle', SalleController::class);
+    //Route salle
+    Route::resource('salle', SalleController::class);
 
-//Route traitement
-Route::resource('traitement', TraitementController::class);
+    //Route traitement
+    Route::resource('traitement', TraitementController::class);
 
-//Route rapport
-Route::resource('rapport', RapportController::class);
+    //Route rapport
+    Route::resource('rapport', RapportController::class);
 
-//Route operation
-Route::resource('operation', OperationController::class);
+    //Route operation
+    Route::resource('operation', OperationController::class);
 
 });
 //=========================================End Group Middleware Auth========================//
