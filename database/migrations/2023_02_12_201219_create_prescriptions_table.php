@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('libelle');
             $table->foreignId('user_id')->constrained;
             $table->foreignId('patient_id')->constrained;
+            $table->timestamps();
 
         });
     }

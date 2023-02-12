@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OperationController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SalleController;
 use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\PaiementController;
-use App\Http\Controllers\SalleController;
-use App\Http\Controllers\TraitementController;
 use App\Http\Controllers\RapportController;
+use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\OperationController;
+use App\Http\Controllers\TraitementController;
+use App\Http\Controllers\PrescriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::group(['middleware'=>'auth'],function()
 
     //Route operation
     Route::resource('operation', OperationController::class);
+
+    //Route prescription
+    Route::resource('prescri', PrescriptionController::class);
 
 });
 //=========================================End Group Middleware Auth========================//

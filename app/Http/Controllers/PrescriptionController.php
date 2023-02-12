@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Patient;
 use App\Models\Prescription;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PrescriptionController extends Controller
 {
@@ -16,6 +18,11 @@ class PrescriptionController extends Controller
     public function index()
     {
         //
+        $prescris = Prescription::latest()->get();
+        $users = User::where('type_user_id', 1)->get();
+        $patients = Patient::latest()->get();
+
+        return view('prescri_crud.index', compact('prescris', 'users', 'patients'));
     }
 
     /**
@@ -37,6 +44,17 @@ class PrescriptionController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'libelle' => 'required|max:200',
+            'user_id' => 'required',
+            'patient_id' => 'required'
+        ]);
+        $prescri = Prescription::create([
+            'libelle' => $request->libelle,
+            'user_id' => $request->user_id,
+            'patient_id' => $request->patient_id
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -68,9 +86,16 @@ class PrescriptionController extends Controller
      * @param  \App\Models\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prescription $prescription)
+    public function update(Request $request, $id)
     {
         //
+        $validateData = $this->validate($request, [
+            'libelle' => 'required|max:200',
+            'user_id' => 'required',
+            'patient_id' => 'required'
+        ]);
+        $prescri = Prescription::whereId($id)->update($validateData);
+        return redirect()->back();
     }
 
     /**
@@ -79,8 +104,11 @@ class PrescriptionController extends Controller
      * @param  \App\Models\Prescription  $prescription
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prescription $prescription)
+    public function destroy($id)
     {
         //
+        $prescri = Prescription::findOrfail($id);
+        $prescri->delete();
+        return redirect()->back();
     }
 }
