@@ -58,7 +58,7 @@ class RapportController extends Controller
         $rapport = Rapport::create([
             'description' => $request->description,
             'resultat' => $request->resultat,
-            'piece_jointe' => $request->resultat,
+            'piece_jointe' => $request->piece_jointe,
             'patient_id' => $request->patient_id,
             'user_id' => $request->user_id,
             

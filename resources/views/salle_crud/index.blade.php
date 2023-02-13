@@ -209,7 +209,7 @@ role="dialog" tabindex="-1">
 <div class="modal-content">
 
     <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Enregistrement d'un Visiteur</h5>
+        <h5 class="modal-title" id="myModalLabel">Enregistrement d'une Salle</h5>
         <button type="button" class="close" data-bs-dismiss="modal">
             x
         </button>

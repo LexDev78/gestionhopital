@@ -57,6 +57,7 @@ class PatientController extends Controller
             'prenom' => $request->prenom,
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
+            'email' => $request->email,
         ]);
         //Immatriculation
         $id = $patient->id;

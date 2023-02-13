@@ -220,7 +220,7 @@
     <div class="modal-content">
 
         <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Enregistrement d'un test</h5>
+            <h5 class="modal-title" id="myModalLabel">Enregistrement d'un traitement</h5>
             <button type="button" class="close" data-bs-dismiss="modal">
                 x
             </button>
