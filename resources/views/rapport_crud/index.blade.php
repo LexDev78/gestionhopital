@@ -297,9 +297,10 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group has-icon-left">
+                        <div class="form-group has-icon-left">                          
                             <div class="position-relative">
-                                <input type="text" autocomplete="off" name="piece_jointe"
+                            <label for="patient">Piece Jointe</label>
+                                <input type="file" autocomplete="off" name="piece_jointe"
                                 class="form-control"  placeholder="Piece Jointe!...">
                                 <div class="form-control-icon">
                                     <i class="bi bi-pencil"></i>

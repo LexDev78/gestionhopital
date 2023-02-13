@@ -42,7 +42,7 @@
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
-                <h4>Salut, Bon retour Mr {{Auth::user()->nom}}!</h4>
+                <h4>Salut, Bon retour Mr/Mme {{Auth::user()->nom}}!</h4>
                 <p class="mb-0">Votre espace personnel</p>
             </div>
         </div>
